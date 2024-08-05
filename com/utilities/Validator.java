@@ -75,4 +75,11 @@ public class Validator {
         Matcher m = p.matcher(pinCode);
         return m.matches();
     }
+
+    public static boolean isValidNotNull(String input) {
+        if(!input.isEmpty()) { 
+            return true;
+        }
+        return false;
+    }
 }

@@ -92,6 +92,12 @@ public class EmployeeController {
             boolean checkDob = false;
             boolean checkEmail = false;
             boolean checkZipCode = false;
+            boolean checkStreet = false;
+            boolean checkState = false;
+            boolean checkCity = false;
+            String state = "";
+            String city = "";
+            String street = "";
             LocalDate dob = null;
             String name = "";
             String emailId = "";
@@ -136,12 +142,35 @@ public class EmployeeController {
             scanner.nextLine();
             
             // Address details
-            System.out.print("Enter House No. & Street: ");
-            String street = scanner.nextLine();
-            System.out.print("Enter City: ");
-            String city = scanner.nextLine();
-            System.out.print("Enter State: ");
-            String state = scanner.nextLine();
+            while(!checkStreet) {
+                System.out.print("Enter House No. & Street: ");
+                street = scanner.nextLine();
+                if(!validator.isValidNotNull(street)) {
+                    System.out.println("InValid");
+                } else {
+                    checkStreet = true;
+                }
+            }
+             
+            while(!checkCity) {
+                System.out.print("Enter City: ");
+                city = scanner.nextLine();
+                if(!validator.isValidNotNull(city)) {
+                    System.out.println("InValid");
+                } else {
+                    checkCity = true;
+                }
+            }
+
+            while(!checkState) {
+                System.out.print("Enter State: ");
+                state = scanner.nextLine();
+                if(!validator.isValidNotNull(state)) {
+                    System.out.println("InValid");
+                } else {
+                    checkState = true;
+                }
+            }
 
             while(!checkZipCode) {
                 System.out.print("Enter ZipCode: ");
@@ -226,6 +255,14 @@ public class EmployeeController {
             boolean checkDob = false;
             boolean checkEmail = false;
             LocalDate dob = null;
+            boolean checkZipCode = false;
+            boolean checkStreet = false;
+            boolean checkState = false;
+            boolean checkCity = false;
+            String state = "";
+            String zip = "";
+            String city = "";
+            String street = "";
             String name = "";
             String emailId = "";
             System.out.print("Enter employee Id: ");
@@ -256,6 +293,7 @@ public class EmployeeController {
                     checkDob = true;
                 }
             }
+
             while(!checkEmail) {
                 System.out.print("Enter Employee EmailId: ");
                 emailId = scanner.nextLine();
@@ -276,14 +314,45 @@ public class EmployeeController {
             scanner.nextLine();
 
             // Address details
-            System.out.print("Enter House No. & Street: ");
-            String street = scanner.nextLine();
-            System.out.print("Enter City: ");
-            String city = scanner.nextLine();
-            System.out.print("Enter State: ");
-            String state = scanner.nextLine();
-            System.out.print("Enter Zip: ");
-            String zip = scanner.nextLine();
+            while(!checkStreet) {
+                System.out.print("Enter House No. & Street: ");
+                street = scanner.nextLine();
+                if(!validator.isValidNotNull(street)) {
+                    System.out.println("InValid");
+                } else {
+                    checkStreet = true;
+                }
+            }
+             
+            while(!checkCity) {
+                System.out.print("Enter City: ");
+                city = scanner.nextLine();
+                if(!validator.isValidNotNull(city)) {
+                    System.out.println("InValid");
+                } else {
+                    checkCity = true;
+                }
+            }
+
+            while(!checkState) {
+                System.out.print("Enter State: ");
+                state = scanner.nextLine();
+                if(!validator.isValidNotNull(state)) {
+                    System.out.println("InValid");
+                } else {
+                    checkState = true;
+                }
+            }
+
+            while(!checkZipCode) {
+                System.out.print("Enter ZipCode: ");
+                zip = scanner.nextLine();
+                if(!validator.isValidPinCode(zip)) {
+                    System.out.println("InValid");
+                } else {
+                    checkZipCode = true;
+                }
+            }
 
             Address address = new Address(street, city, state, zip);
 
