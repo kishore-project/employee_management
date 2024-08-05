@@ -26,6 +26,7 @@ import com.sports.service.SportServiceImpl;
  * @version 1.0 
  */
 public class EmployeeServiceImpl implements EmployeeService{
+
     private EmployeeRepository employeeRepository;
     private DepartmentService departmentService = new DepartmentServiceImpl();
     private SportService sportService = new SportServiceImpl();
@@ -51,6 +52,7 @@ public class EmployeeServiceImpl implements EmployeeService{
         Department department = departmentService.getDepartmentById(deptId);
         if (department == null) {
             throw new IllegalArgumentException("Department not found" +deptId);
+
         }
 
         Employee employee = new Employee(id, name, dob, department, emailId, address); //ID will be set in the repository

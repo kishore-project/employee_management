@@ -1,5 +1,7 @@
 package com.utilities;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,6 +12,7 @@ import org.hibernate.cfg.Configuration;
  */
 public class HibernateConnection {
 
+    private static final Logger logger = LogManager.getLogger(HibernateConnection.class);
     private static HibernateConnection instance = new HibernateConnection();
     private SessionFactory sessionFactory;
 
@@ -31,10 +34,10 @@ public class HibernateConnection {
             Configuration configuration = new Configuration();
             configuration.configure("hibernate.cfg.xml");
             sessionFactory = configuration.buildSessionFactory();
+            logger.info("SessionFactory created succesfully.");
         } catch (HibernateException e) {
             // Log the exception or handle it accordingly
-            System.err.println("Error creating SessionFactory: " + e.getMessage());
-            e.printStackTrace();
+            logger.error("Error creating SessionFactory: ", e);
             throw new ExceptionInInitializerError(e);
         }
     }
@@ -46,11 +49,11 @@ public class HibernateConnection {
      */
     public static Session getSession() {
         try {
+            logger.info("opening new Hibernate session.");
             return getInstance().sessionFactory.openSession();
         } catch (HibernateException e) {
             // Log the exception or handle it accordingly
-            System.err.println("Error opening session: " + e.getMessage());
-            e.printStackTrace();
+            logger.error("Error opening session: ", e);
             return null; // Or consider throwing a custom exception
         }
     }

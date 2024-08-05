@@ -2,6 +2,9 @@ package com.sports.controller;
 
 import java.util.Scanner;
 import java.util.Set;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
 
 import com.exceptions.DataBaseException;
@@ -17,6 +20,7 @@ import com.sports.service.SportServiceImpl;
  * @version 1.0 
  */
 public class SportController {
+    private static final Logger logger = LogManager.getLogger(SportController.class);
     private SportService sportService = new SportServiceImpl();
     private static int idCounter = 1; //Set the Id and increment the counter for auto increment Ids
     private Scanner scanner = new Scanner(System.in);
@@ -67,9 +71,9 @@ public class SportController {
             }
     
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         }
     }
 
@@ -78,16 +82,17 @@ public class SportController {
      */
     public void createSport() throws IllegalArgumentException, DataBaseException {
         try {
+            logger.debug(" Create a Department has been initiated");
             System.out.print("Enter sport Name: ");
             String name = scanner.nextLine();
 
             sportService.addSport(idCounter, name);
-            System.out.println("Sport added successfully.");
+            logger.info("Sport added successfully." +name);
             idCounter++;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("Error while adding sport", e);
         }
     }
 
@@ -99,13 +104,13 @@ public class SportController {
             System.out.print("Enter sport Id to delete: ");
             int id = scanner.nextInt();
             scanner.nextLine();
-
+            logger.debug("Getting sport id for remove"+id);
             sportService.removeSport(id);
-            System.out.println("Sport deleted successfully.");
+            logger.info("Sport deleted successfully.");
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("Error while deleting sport..", e);
         }
     }
 
@@ -113,16 +118,17 @@ public class SportController {
      * Displays all sports currently in.
      */ 
     public void displayAllSports() throws DataBaseException {
-        try{
+        try {
+            logger.debug("Getting sport list");
             System.out.println("All Sports:");
             System.out.printf("%-5s | %-10s %n"," ID ", " Name ");
             for (Sport sport : sportService.getAllSports()) {
                 System.out.printf(" %-5s | %-10s %n",sport.getId(), sport.getName());
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("Error while display department list ", e);
         }
     }
  
@@ -131,6 +137,7 @@ public class SportController {
      */
     public void displaySportById() throws IllegalArgumentException, DataBaseException {
         try {
+            logger.debug("Search Sport by ID ");
             System.out.print("Enter sport Id to display: ");
             int id = scanner.nextInt();
             scanner.nextLine();
@@ -139,11 +146,12 @@ public class SportController {
             if (sport != null) {
                 System.out.println("ID = " +sport.getId()+ " Name = " +sport.getName());
             } else {
-                System.out.println("Sport not found." +id);
-            }        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+                logger.error("Sport not found." +id);
+            }
+        } catch (IllegalArgumentException e) {
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("Getting error while sport by id", e.getMessage());
         }
     }
 
@@ -152,10 +160,11 @@ public class SportController {
     */
     public void updateSport() throws IllegalArgumentException, DataBaseException  {
         try {
+            logger.debug("Sport update initiated");
             System.out.print("Enter sport Id: ");
             int id = scanner.nextInt();
             if(sportService.getSportById(id) == null) {
-                System.out.println("Sport ID Not Found" +id);
+                logger.info("Sport ID Not Found" +id);
                 return;
             }
             scanner.nextLine();
@@ -163,11 +172,11 @@ public class SportController {
             String name = scanner.nextLine();
 
             sportService.updateSport(id, name);
-            System.out.println("Sport updated successfully.");
+            logger.info("Sport updated successfully.");
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("Error while update sport", e.getMessage());
         }
     }
 
@@ -180,15 +189,16 @@ public class SportController {
              System.out.println("enter Sport ID: ");
              int id=scanner.nextInt();
              scanner.nextLine();
+             logger.debug("display employee by sport ID" +id);
              Set<Employee> employees = sportService.getSportById(id).getEmployees();
              System.out.printf("Employees in Sports %d:\n",id);
              for(Employee employee : employees) {
                  System.out.println(employee);
               }
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("error while getting employee list", e);
         }
     }
 }

@@ -3,6 +3,8 @@ package com.department.dao;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
@@ -22,6 +24,7 @@ import com.utilities.HibernateConnection;
  * @version 1.0 
  */
 public class DepartmentRepositoryImpl implements DepartmentRepository {
+    private static final Logger logger = LogManager.getLogger(DepartmentRepositoryImpl.class);
 
     /**
      * Adds a new department to the database
@@ -39,6 +42,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             if (transaction != null) {
                 transaction.rollback();
             }
+            logger.error("Error while adding Department: " + department.getName(), e);
             throw new DataBaseException("Error while adding Department: " + department.getName(), e);
         }
     }
@@ -63,6 +67,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             if (transaction != null) {
                 transaction.rollback();
             }
+            logger.error("Error while deleting Department: " + id, e);
             throw new DataBaseException("Error while deleting Department: " + id, e);
         }
     }
@@ -77,6 +82,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         try (Session session =  HibernateConnection.getSession()) {
             return session.createQuery("FROM Department WHERE isDeleted = false", Department.class).list();
         } catch (HibernateException e) {
+            logger.debug("Error while getting all Departments", e);
             throw new DataBaseException("Error while getting all Departments", e);
         }
     }
@@ -92,6 +98,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         try (Session session =  HibernateConnection.getSession()) {
             return session.get(Department.class, id);
         } catch (HibernateException e) {
+            logger.error("Error while getting Department by ID: " + id, e);
             throw new DataBaseException("Error while getting Department by ID: " + id, e);
         }
     }
@@ -112,6 +119,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             if (transaction != null) {
                 transaction.rollback();
             }
+            logger.error("Error while updating Department: " + department.getName(), e);
             throw new DataBaseException("Error while updating Department: " + department.getName(), e);
         }
     }
@@ -132,6 +140,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
                 return new ArrayList<>();
             }
         } catch (HibernateException e) {
+            logger.error("Error while getting Employees by Department ID: " + departmentId, e);
             throw new DataBaseException("Error while getting Employees by Department ID: " + departmentId, e);
         }
     }

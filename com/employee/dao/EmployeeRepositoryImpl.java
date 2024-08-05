@@ -21,7 +21,7 @@ import com.utilities.HibernateConnection;
  * @author  Kishore 
  * @version 1.0 
  */
-public class EmployeeRepositoryImpl implements EmployeeRepository{
+public class EmployeeRepositoryImpl implements EmployeeRepository {
     
     /**
      * Adds a new employee to the database.

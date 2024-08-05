@@ -2,6 +2,8 @@ package com.department.service;
 
 import java.sql.SQLException;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.exceptions.DataBaseException;
 import com.department.dao.DepartmentRepository;
@@ -19,6 +21,7 @@ import com.model.Employee;
  * @version 1.0 
  */
 public class DepartmentServiceImpl implements DepartmentService {
+    private static final Logger logger = LogManager.getLogger(DepartmentServiceImpl.class);
     private DepartmentRepository departmentRepository;
 
     public DepartmentServiceImpl() {
@@ -49,6 +52,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         if (department != null) {
             departmentRepository.deleteDepartment(id);
         } else {
+            logger.error("Department not found" +id);
             throw new IllegalArgumentException("Department not found" +id);
         }
     }
@@ -88,6 +92,7 @@ public class DepartmentServiceImpl implements DepartmentService {
             department.setName(name);
             departmentRepository.updateDepartment(department);
         } else {
+            logger.error("Department not found" +id);
             throw new IllegalArgumentException("Department not found"+id);
         }
     }

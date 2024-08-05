@@ -1,8 +1,11 @@
 package com.department.controller;
 
-import org.hibernate.HibernateException;
 import java.util.List;
 import java.util.Scanner;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.hibernate.HibernateException;
 
 import com.exceptions.DataBaseException;
 import com.department.service.DepartmentService;
@@ -17,6 +20,7 @@ import com.utilities.Validator;
  * @version 1.0 
  */
 public class DepartmentController {
+    private static final Logger logger = LogManager.getLogger(DepartmentController.class);
     private DepartmentService departmentService  = new DepartmentServiceImpl();
     private Validator validator;
     private static int idCounter = 1; //Set the Id and increment the counter for auto increment Ids
@@ -62,9 +66,9 @@ public class DepartmentController {
                 }
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         }
     }
 
@@ -73,6 +77,7 @@ public class DepartmentController {
      */
     public void createDepartment() throws IllegalArgumentException, DataBaseException {
         try {
+            logger.debug("Department credentials validation has been initiated");
             String name = "";
             boolean checkName = false;
             scanner.nextLine();
@@ -87,12 +92,12 @@ public class DepartmentController {
             }
 
             departmentService.addDepartment(idCounter, name);
-            System.out.println("Department added successfully.");
+            logger.info("Department added successfully." +name);
             idCounter++;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("Error while adding department", e);
         }
     }
 
@@ -103,13 +108,13 @@ public class DepartmentController {
         try {
             System.out.print("Enter Department ID: ");
             int id = scanner.nextInt();
-
+            logger.debug("Getting department id for remove"+id);
             departmentService.removeDepartment(id);
-            System.out.println("Department deleted successfully.");
+            logger.info("Department deleted successfully.");
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("Error while deleting department..", e);
         }
     }
 
@@ -118,10 +123,11 @@ public class DepartmentController {
      */
     public void displayAllDepartments() throws DataBaseException {
         try {
+            logger.debug("Getting department list");
             System.out.printf("|%-10s | %-20s |\n","ID","Department Name");
             departmentService.getAllDepartments().forEach(System.out::println);
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("Error while display department list ", e);
         }
     }
 
@@ -130,6 +136,7 @@ public class DepartmentController {
      */
     public void updateDepartment() throws IllegalArgumentException, DataBaseException {
         try {
+            logger.debug("Department update initiated");
             System.out.print("Enter the ID to update: ");
             int id = scanner.nextInt();
             scanner.nextLine();
@@ -138,11 +145,11 @@ public class DepartmentController {
             String name = scanner.nextLine();
 
             departmentService.updateDepartment(id, name);
-            System.out.println("Department updated successfully.");
+            logger.info("Department updated successfully." +id);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("Error while update department", e.getMessage());
         }
     }
 
@@ -155,6 +162,7 @@ public class DepartmentController {
              System.out.println("enter Department ID: ");
              int id=scanner.nextInt();
              scanner.nextLine();
+             logger.debug("display employee by department ID" +id);
 
              List<Employee> employees = departmentService.getEmployeesByDepartmentId(id);
              System.out.printf("Employees in Department %d:\n",id);
@@ -162,9 +170,9 @@ public class DepartmentController {
                  System.out.println(employee);
               }
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("error while getting employee list", e);
         }
     }
 }

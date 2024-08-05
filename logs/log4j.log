@@ -1,0 +1,81 @@
+[INFO ] 2024-08-05 16:01:00.502 [main] Version - HHH000412: Hibernate Core {5.3.1.Final}
+[INFO ] 2024-08-05 16:01:00.508 [main] Environment - HHH000206: hibernate.properties not found
+[INFO ] 2024-08-05 16:01:00.807 [main] SpatialService - HHH80000001: hibernate-spatial integration enabled : true
+[INFO ] 2024-08-05 16:01:00.838 [main] Version - HCANN000001: Hibernate Commons Annotations {5.0.3.Final}
+[WARN ] 2024-08-05 16:01:00.973 [main] pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO ] 2024-08-05 16:01:00.980 [main] pooling - HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/employeemanagement]
+[INFO ] 2024-08-05 16:01:00.981 [main] pooling - HHH10001001: Connection properties: {user=root}
+[INFO ] 2024-08-05 16:01:00.997 [main] pooling - HHH10001003: Autocommit mode: false
+[INFO ] 2024-08-05 16:01:01.006 [main] DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO ] 2024-08-05 16:01:01.232 [main] Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[INFO ] 2024-08-05 16:01:01.302 [main] EnversServiceImpl - Envers integration enabled? : true
+[INFO ] 2024-08-05 16:01:02.020 [main] access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2a87ba34] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO ] 2024-08-05 16:01:02.441 [main] HibernateConnection - SessionFactory created succesfully.
+[INFO ] 2024-08-05 16:01:02.444 [main] HibernateConnection - opening new Hibernate session.
+[INFO ] 2024-08-05 16:01:02.504 [main] QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+[INFO ] 2024-08-05 17:16:04.744 [main] Version - HHH000412: Hibernate Core {5.3.1.Final}
+[INFO ] 2024-08-05 17:16:04.748 [main] Environment - HHH000206: hibernate.properties not found
+[INFO ] 2024-08-05 17:16:05.011 [main] SpatialService - HHH80000001: hibernate-spatial integration enabled : true
+[INFO ] 2024-08-05 17:16:05.043 [main] Version - HCANN000001: Hibernate Commons Annotations {5.0.3.Final}
+[WARN ] 2024-08-05 17:16:05.175 [main] pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO ] 2024-08-05 17:16:05.180 [main] pooling - HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/employeemanagement]
+[INFO ] 2024-08-05 17:16:05.180 [main] pooling - HHH10001001: Connection properties: {user=root}
+[INFO ] 2024-08-05 17:16:05.181 [main] pooling - HHH10001003: Autocommit mode: false
+[INFO ] 2024-08-05 17:16:05.184 [main] DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO ] 2024-08-05 17:16:05.390 [main] Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[INFO ] 2024-08-05 17:16:05.456 [main] EnversServiceImpl - Envers integration enabled? : true
+[INFO ] 2024-08-05 17:16:06.148 [main] access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@34d480b9] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO ] 2024-08-05 17:16:06.563 [main] HibernateConnection - SessionFactory created succesfully.
+[INFO ] 2024-08-05 17:16:06.571 [main] HibernateConnection - opening new Hibernate session.
+[INFO ] 2024-08-05 17:16:06.634 [main] QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+[INFO ] 2024-08-05 17:55:11.822 [main] Version - HHH000412: Hibernate Core {5.3.1.Final}
+[INFO ] 2024-08-05 17:55:11.822 [main] Environment - HHH000206: hibernate.properties not found
+[INFO ] 2024-08-05 17:55:12.057 [main] SpatialService - HHH80000001: hibernate-spatial integration enabled : true
+[INFO ] 2024-08-05 17:55:12.089 [main] Version - HCANN000001: Hibernate Commons Annotations {5.0.3.Final}
+[WARN ] 2024-08-05 17:55:12.198 [main] pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO ] 2024-08-05 17:55:12.198 [main] pooling - HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/employeemanagement]
+[INFO ] 2024-08-05 17:55:12.214 [main] pooling - HHH10001001: Connection properties: {user=root}
+[INFO ] 2024-08-05 17:55:12.214 [main] pooling - HHH10001003: Autocommit mode: false
+[INFO ] 2024-08-05 17:55:12.214 [main] DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO ] 2024-08-05 17:55:12.385 [main] Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[INFO ] 2024-08-05 17:55:12.448 [main] EnversServiceImpl - Envers integration enabled? : true
+[INFO ] 2024-08-05 17:55:13.010 [main] access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5e180aaf] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO ] 2024-08-05 17:55:13.198 [main] HibernateConnection - SessionFactory created succesfully.
+[INFO ] 2024-08-05 17:55:13.198 [main] HibernateConnection - opening new Hibernate session.
+[INFO ] 2024-08-05 17:55:13.245 [main] QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+[INFO ] 2024-08-05 17:55:24.647 [main] HibernateConnection - opening new Hibernate session.
+[INFO ] 2024-08-05 17:55:24.663 [main] DepartmentController - Department added successfully.
+[INFO ] 2024-08-05 19:56:54.880 [main] Version - HHH000412: Hibernate Core {5.3.1.Final}
+[INFO ] 2024-08-05 19:56:54.885 [main] Environment - HHH000206: hibernate.properties not found
+[INFO ] 2024-08-05 19:56:55.161 [main] SpatialService - HHH80000001: hibernate-spatial integration enabled : true
+[INFO ] 2024-08-05 19:56:55.190 [main] Version - HCANN000001: Hibernate Commons Annotations {5.0.3.Final}
+[WARN ] 2024-08-05 19:56:55.323 [main] pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO ] 2024-08-05 19:56:55.328 [main] pooling - HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/employeemanagement]
+[INFO ] 2024-08-05 19:56:55.329 [main] pooling - HHH10001001: Connection properties: {user=root}
+[INFO ] 2024-08-05 19:56:55.329 [main] pooling - HHH10001003: Autocommit mode: false
+[INFO ] 2024-08-05 19:56:55.332 [main] DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO ] 2024-08-05 19:56:55.521 [main] Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[INFO ] 2024-08-05 19:56:55.581 [main] EnversServiceImpl - Envers integration enabled? : true
+[INFO ] 2024-08-05 19:56:56.311 [main] access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5e180aaf] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO ] 2024-08-05 19:56:56.718 [main] HibernateConnection - SessionFactory created succesfully.
+[INFO ] 2024-08-05 19:56:56.723 [main] HibernateConnection - opening new Hibernate session.
+[INFO ] 2024-08-05 19:56:56.793 [main] QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+[INFO ] 2024-08-05 20:11:36.945 [main] Version - HHH000412: Hibernate Core {5.3.1.Final}
+[INFO ] 2024-08-05 20:11:36.950 [main] Environment - HHH000206: hibernate.properties not found
+[INFO ] 2024-08-05 20:11:37.212 [main] SpatialService - HHH80000001: hibernate-spatial integration enabled : true
+[INFO ] 2024-08-05 20:11:37.240 [main] Version - HCANN000001: Hibernate Commons Annotations {5.0.3.Final}
+[WARN ] 2024-08-05 20:11:37.366 [main] pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO ] 2024-08-05 20:11:37.373 [main] pooling - HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/employeemanagement]
+[INFO ] 2024-08-05 20:11:37.373 [main] pooling - HHH10001001: Connection properties: {user=root}
+[INFO ] 2024-08-05 20:11:37.373 [main] pooling - HHH10001003: Autocommit mode: false
+[INFO ] 2024-08-05 20:11:37.376 [main] DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO ] 2024-08-05 20:11:37.574 [main] Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[INFO ] 2024-08-05 20:11:37.643 [main] EnversServiceImpl - Envers integration enabled? : true
+[INFO ] 2024-08-05 20:11:38.343 [main] access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@34d480b9] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO ] 2024-08-05 20:11:38.778 [main] HibernateConnection - SessionFactory created succesfully.
+[INFO ] 2024-08-05 20:11:38.779 [main] HibernateConnection - opening new Hibernate session.
+[INFO ] 2024-08-05 20:11:38.840 [main] QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+[INFO ] 2024-08-05 20:11:44.963 [main] HibernateConnection - opening new Hibernate session.
+[INFO ] 2024-08-05 20:11:47.097 [main] HibernateConnection - opening new Hibernate session.
+[INFO ] 2024-08-05 20:11:49.760 [main] HibernateConnection - opening new Hibernate session.
+[INFO ] 2024-08-05 20:11:55.049 [main] HibernateConnection - opening new Hibernate session.

@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
 
 import com.department.controller.DepartmentController;
@@ -23,6 +26,7 @@ import com.utilities.Validator;
  * @version 1.0 
  */
 public class EmployeeController {
+    private static final Logger logger = LogManager.getLogger(EmployeeController.class);
     private EmployeeService employeeService = new EmployeeServiceImpl();
     private Validator validator;
     private static int idCounter = 1;  //Set the Id and increment the counter for auto increment Ids
@@ -77,9 +81,9 @@ public class EmployeeController {
                  }
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         }
     }
 
@@ -88,6 +92,7 @@ public class EmployeeController {
      */
     public void createEmployee() throws IllegalArgumentException, DataBaseException {
         try {
+            logger.debug("Employee credentials validation has been initiated");
             boolean checkName = false;
             boolean checkDob = false;
             boolean checkEmail = false;
@@ -107,7 +112,7 @@ public class EmployeeController {
                 System.out.print("Enter employee Name: ");
                 name = scanner.nextLine();
                 if(!validator.isValidname(name)) {
-                System.out.println("InValid");
+                System.out.println("InValid Input");
                 } else {
                     checkName = true;
                 }
@@ -126,7 +131,7 @@ public class EmployeeController {
                 System.out.print("Enter Employee EmailId: ");
                 emailId = scanner.nextLine();
                 if(!validator.isValidEmail(emailId)) {
-                    System.out.println("InValid");
+                    System.out.println("InValid Input");
                 } else {
                     checkEmail = true;
                 }
@@ -146,7 +151,7 @@ public class EmployeeController {
                 System.out.print("Enter House No. & Street: ");
                 street = scanner.nextLine();
                 if(!validator.isValidNotNull(street)) {
-                    System.out.println("InValid");
+                    System.out.println("Cannot be Null");
                 } else {
                     checkStreet = true;
                 }
@@ -156,7 +161,7 @@ public class EmployeeController {
                 System.out.print("Enter City: ");
                 city = scanner.nextLine();
                 if(!validator.isValidNotNull(city)) {
-                    System.out.println("InValid");
+                    System.out.println("Cannot be Null");
                 } else {
                     checkCity = true;
                 }
@@ -166,7 +171,7 @@ public class EmployeeController {
                 System.out.print("Enter State: ");
                 state = scanner.nextLine();
                 if(!validator.isValidNotNull(state)) {
-                    System.out.println("InValid");
+                    System.out.println("Cannot be Null");
                 } else {
                     checkState = true;
                 }
@@ -176,21 +181,20 @@ public class EmployeeController {
                 System.out.print("Enter ZipCode: ");
                 zip = scanner.nextLine();
                 if(!validator.isValidPinCode(zip)) {
-                    System.out.println("InValid");
+                    System.out.println("InValid input or Cannot be Null");
                 } else {
                     checkZipCode = true;
                 }
             }
 
             Address address = new Address(street, city, state, zip);
-
             employeeService.addEmployee(idCounter, name, dob, emailId, deptId,address);
-            System.out.println("Employee added successfully.");
+            logger.info("Employee added successfully." +name);
             idCounter++;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("Error while adding employee", e);
         }
     }
 
@@ -202,13 +206,15 @@ public class EmployeeController {
             System.out.print("Enter Employee Id to delete: ");
             int id = scanner.nextInt();
             scanner.nextLine();
+            logger.debug("Getting employee id for remove"+id);
 
             employeeService.removeEmployee(id);
-            System.out.println("Employee deleted successfully.");
+            logger.info("Employee deleted successfully."+id);
+            System.out.println("Employee deleted successfully."+id);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("Error while deleting Employee..", e);
         }
     }
     
@@ -216,11 +222,16 @@ public class EmployeeController {
      * Displays all employees in the system.
      */
     public void displayAllEmployees() throws DataBaseException {
-        List<Employee> employees = employeeService.getAllEmployees();
-        System.out.printf("|%-10s | %-20s | %-5s | %-20s | %-30s|\n ","ID",
-                            "Name","AGE", "DEPARTMENTNAME", "EMAILID");
-        for (Employee employee : employees) {
-            System.out.println(employee);
+        try {
+            logger.debug("Getting employee list");
+            List<Employee> employees = employeeService.getAllEmployees();
+            System.out.printf("|%-10s | %-20s | %-5s | %-20s | %-30s| %-25s | %-30s |\n ","ID",
+                            "Name","AGE", "DEPARTMENTNAME", "EMAILID", "SPORTLIST", "ADDRESS");
+            for (Employee employee : employees) {
+                System.out.println(employee);
+            }
+        } catch (HibernateException e) {
+            logger.error("Error while display employee list ", e);
         }
     }
     
@@ -232,17 +243,19 @@ public class EmployeeController {
             System.out.print("Enter Employee Id to display: ");
             int id = scanner.nextInt();
             scanner.nextLine();
+            logger.debug("Getting employee by ID: ", +id);
 
             Employee employee = employeeService.getEmployeeById(id);
             if (employee != null) {
                 System.out.println(employee);
             } else {
-                System.out.println("Employee not found.");
+                System.out.println("Employee not found."+id);
+                logger.info("Employee not found."+id);
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("Error while getting Employee by ID" + e.getMessage());
         }
     }
 
@@ -251,6 +264,7 @@ public class EmployeeController {
      */
     public void updateEmployee() throws IllegalArgumentException, DataBaseException {
         try {
+            logger.debug("Employee update initiated");
             boolean checkName = false;
             boolean checkDob = false;
             boolean checkEmail = false;
@@ -268,7 +282,7 @@ public class EmployeeController {
             System.out.print("Enter employee Id: ");
             int id = scanner.nextInt();
             if(employeeService.getEmployeeById(id) == null) {
-                System.out.println("Employee ID Not Found" +id);
+                logger.info("Employee not found."+id);
                 return;
             }
                    
@@ -278,7 +292,7 @@ public class EmployeeController {
                 System.out.print("Enter employee Name: ");
                 name = scanner.nextLine();
                 if(!validator.isValidname(name)) {
-                System.out.println("InValid");
+                System.out.println("InValid input");
                 } else {
                     checkName = true;
                 }
@@ -357,11 +371,11 @@ public class EmployeeController {
             Address address = new Address(street, city, state, zip);
 
             employeeService.updateEmployee(id, name, dob, emailId, deptId,address);
-            System.out.println("Employee updated successfully.");
+            logger.info("Employee updated successfully." +id);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("unable to update the employee" +e.getMessage());
         }
     }
     /**
@@ -369,6 +383,7 @@ public class EmployeeController {
      */
     public void addSportToEmployee() throws IllegalArgumentException, DataBaseException {
         try {
+            logger.debug("Employee added to sport initiated");
             System.out.println("Enter Employee Id: ");
             int employeeId = scanner.nextInt();
 
@@ -380,11 +395,12 @@ public class EmployeeController {
             scanner.nextLine();
 
             employeeService.addSportToEmployee(employeeId, sportId);
+            logger.info("Sport added to employee successfully.");
             System.out.println("Sport added to employee successfully.");
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("Unable to add sport to project"+ e.getMessage());
         }
     }
     
@@ -393,6 +409,7 @@ public class EmployeeController {
      */
     public void removeSportFromEmployee() throws IllegalArgumentException, DataBaseException {
         try {
+            logger.debug("Employee remove to sport initiated");
             System.out.print("Enter Employee Id: ");
             int employeeId = scanner.nextInt();
             System.out.print("Enter Sport Id: ");
@@ -400,11 +417,12 @@ public class EmployeeController {
             scanner.nextLine();
 
             employeeService.removeSportFromEmployee(employeeId, sportId);
+            logger.info("Sport removed to employee successfully.");
             System.out.println("Sport removed from employee successfully.");
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
+            logger.error("Unable to remove sport to project"+ e.getMessage());
         }
     }
 }
