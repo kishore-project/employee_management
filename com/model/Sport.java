@@ -39,12 +39,7 @@ public class Sport {
     @Column(name = "IS_ACTIVE")
     private boolean isActive;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "employee_Sport",
-        joinColumns = @JoinColumn(name = "Sport_ID"),
-        inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID")
-    )
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "sports")
     private Set<Employee> employees = new HashSet<>();
     
     /**

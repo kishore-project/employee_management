@@ -136,7 +136,7 @@ public class EmployeeController {
             scanner.nextLine();
             
             // Address details
-            System.out.print("Enter Street: ");
+            System.out.print("Enter House No. & Street: ");
             String street = scanner.nextLine();
             System.out.print("Enter City: ");
             String city = scanner.nextLine();
@@ -276,7 +276,7 @@ public class EmployeeController {
             scanner.nextLine();
 
             // Address details
-            System.out.print("Enter Street: ");
+            System.out.print("Enter House No. & Street: ");
             String street = scanner.nextLine();
             System.out.print("Enter City: ");
             String city = scanner.nextLine();

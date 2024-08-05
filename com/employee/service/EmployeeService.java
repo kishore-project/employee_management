@@ -28,6 +28,7 @@ public interface EmployeeService {
      * @param dob - The date of birth of the employee .Should not be a future date.
      * @param emailId - The emailID of the employee. Must Be Valid.
      * @param DeptId - The ID of the department the employee belong to. must exist.
+     * @param address - Address of the employee.
      * @throws IllegalArgumentException if the department is not found.
      */
     void addEmployee(int id, String name, LocalDate dob, String emailId,
@@ -63,6 +64,7 @@ public interface EmployeeService {
      * @param dob - The date of birth of the employee. Should not be a future date.
      * @param emailId - The new email Id of the employee.
      * @param deptId - The ID of the new department the employee belongs to. Must exist.
+     * @param address - Address of the employee.
      * @throws IllegalArgumentException if the department or employee is not found.
      */
     void updateEmployee(int id, String name, LocalDate dob,
